@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\login\loginCtr;
-use App\Http\Controllers\userCtrl;
-
+use App\Http\Controllers\registro\registerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,6 +11,6 @@ Route::get('/', function () {
 // Ruta para el login
 Route::get('login', [loginCtr::class, 'loginView']);
 
-// Ruta para el registrar
-Route::get('registrarse', [userCtrl::class, 'registerView']);
+// Ruta para el registro
+Route::get('registrarse', [registerController::class, 'registerView']);
 
