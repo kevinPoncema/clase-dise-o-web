@@ -45,16 +45,46 @@
         /* Efecto al pasar el mouse sobre el botón */
         button:hover {
             box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-
         }
 
         /* Transición suave para el botón */
         button {
             transition: all 0.2s ease-in-out;
         }
+
+        /* Modo oscuro */
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode .form-card {
+            background-color: #333;
+            border-color: #555;
+        }
+
+        /* Botón de modo oscuro */
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        /* Botón para mostrar/ocultar contraseña */
+        .password-toggle {
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #007bff;
+            display: inline-block;
+        }
+
     </style>
 </head>
 <body>
+
+    <button class="btn btn-secondary dark-mode-toggle">Modo Oscuro</button>
 
     <div class="form-container">
         <div class="form-card">
@@ -71,8 +101,9 @@
                 <div class="form-group">
                     <label for="password">Contraseña</label>
                     <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" required>
+                    <span class="password-toggle" onclick="togglePassword()">Mostrar contraseña</span>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block boton">Registrarse</button>
+                <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
             </form>
         </div>
     </div>
@@ -81,5 +112,27 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Función para cambiar entre modo oscuro y claro
+        const toggleButton = document.querySelector('.dark-mode-toggle');
+        toggleButton.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            toggleButton.textContent = document.body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Oscuro';
+        });
+
+        // Función para mostrar/ocultar la contraseña
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const passwordToggle = document.querySelector('.password-toggle');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordToggle.textContent = 'Ocultar contraseña';
+            } else {
+                passwordInput.type = 'password';
+                passwordToggle.textContent = 'Mostrar contraseña';
+            }
+        }
+    </script>
 </body>
 </html>
